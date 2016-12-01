@@ -4,10 +4,13 @@
  */
 package moneycalculator.ui;
 
+import moneycalculator.model.Currency;
+import moneycalculator.model.Money;
+
 /**
  *
  * @author usuario
  */
 public interface MoneyDisplay {
-    public void display();
+    public void display(Money money);
 }
