@@ -4,7 +4,15 @@
  */
 package moneycalculator.ui.Swing;
 
+import java.awt.Component;
+import java.awt.FlowLayout;
+import java.awt.HeadlessException;
+import java.awt.Label;
+import java.awt.PopupMenu;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import moneycalculator.model.Currency;
+import moneycalculator.model.Money;
 import moneycalculator.ui.MoneyDisplay;
 
 /**
@@ -12,10 +20,27 @@ import moneycalculator.ui.MoneyDisplay;
  * @author usuario
  */
 public class SwingMoneyDisplay extends JFrame implements MoneyDisplay {
+    private Money money;
 
-    @Override
-    public void display() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public SwingMoneyDisplay(){
+        setLayout(new FlowLayout());
     }
+
     
+    @Override
+    public void display(Money money) {
+        this.money = money;
+        this.removeAll();
+        this.add(amount());
+        this.add(currency());
+    }
+
+    private Component currency() {
+        return new JLabel(money.getCurrency().getCode());
+    }
+
+    private Component amount() {
+        return new JLabel(String.valueOf(money.getAmount()));
+    }
+
 }
